@@ -8,7 +8,7 @@ SELECT * FROM userTbl;
 -- 정렬 기준은 ASC(오름차순), DESC(내림차순) 이 있으며
 -- 입력이 따로 없는 경우는 기본을 ASC로 잡습니다.
 -- 가입한 순서(reg_date순으로 오름차순 조회를 해 보겠습니다.)
-SELECT * FROM userTbl ORDER BY reg_date ; 
+SELECT * FROM userTbl ORDER BY reg_date; 
 
 -- 키 작은 순으로 나열해 주세요.
 SELECT * FROM userTbl ORDER BY height ASC;
@@ -56,7 +56,7 @@ SELECT * FROM employees ORDER BY hire_date DESC limit 10;
 SELECT * FROM (SELECT * FROM employees limit 10) e ORDER BY hire_date DESC;
 
 -- 만약 limit 숫자1, 숫자2; 와 같이 숫자 2개를 넣는경우
--- 숫자 1번부터 숫자 2에 기입한 갯수만큼 보여줍니다.
+-- 숫자 1번 다음부터 숫자 2에 기입한 갯수만큼 보여줍니다.
 SELECT * FROM employees limit 5, 10;
 
 

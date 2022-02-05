@@ -47,7 +47,7 @@ INSERT INTO users VALUES('abcd123', 'ggfew', '김C', null);
 SELECT * FROM users;
 
 -- 조회구문에 조건을 걸기 위해서 WHERE이라는 구문을 사용합니다.
-SELECT 조회컬럼 FROM 테이블명 WHERE 컬럼명 = '조건에 맞는 값';
+-- SELECT 조회컬럼 FROM 테이블명 WHERE 컬럼명 = '조건에 맞는 값';
 -- 이름이 김자바인 사람만 출력하기
 SELECT * FROM users WHERE user_name = '김자바';
 -- 아이디가 xxx인 사람만 출력해보세요.

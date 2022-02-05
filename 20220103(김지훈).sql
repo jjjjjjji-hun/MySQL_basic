@@ -94,7 +94,7 @@ SELECT max(birth_year) FROM userTbl;
 
 -- 2020 가입자 중 생년이 제일 느린 사람보다 키가 큰 사람을 조회해주세요.
 -- 날짜도 부등호로 조회 가능합니다.(작다 : 이전날짜, 크다 : 이후날짜)
-SELECT user_name, birth_year, height, reg_date FROM userTbl WHERE height >  
+SELECT user_name, birth_year, height, reg_date FROM userTbl WHERE height >
 (SELECT height FROM userTbl WHERE birth_year = 
  (SELECT max(birth_year) FROM userTbl WHERE reg_date > '2020-01-01'));
 
@@ -118,7 +118,7 @@ SELECT * FROM userTbl WHERE height >
 		(SELECT min(reg_date) FROM userTbl WHERE reg_date > '2020-01-01'));
 
 
--- 유저를 5명 더 추가하겠습니다.
+-- 유저를 6명 더 추가하겠습니다.
 INSERT INTO userTbl VALUES ('KJV1', '김주바', 1983, '서울', '01112341234', 171, '2020-08-15');
 INSERT INTO userTbl VALUES ('ADR', '압둘라', 1995, '경기', '01012341234', 183, '2021-04-01');
 INSERT INTO userTbl VALUES ('YSO', '야스오', 2001, '부산', '01043214321', 165, '2021-10-08');
