@@ -80,10 +80,6 @@ UPDATE testtbl2 SET user_name = '소';
 -- wokrbench에서 WHERE절 없이 수정하고 싶다면 safe_update모드를 해제해야 합니다.
 SET SQL_SAFE_UPDATES = 0; -- 0일때 해제, 1일때 safe
 
--- testtbl2의 user_name을 전부 '말'로 고쳐보세요.
-UPDATE testtbl2 SET user_name = '말';
-SELECT * FROM testtbl2;
-
 -- 특정 나이대의 user_name을 여러분들이 좋아하는 동물로 교체해주세요.
 -- WHERE을 이용해 age를 필터링해주세요.
 -- 하나의 나이대만 우선 고쳐주세요.
@@ -130,8 +126,10 @@ CREATE TABLE testtbl4(
     
 INSERT INTO testtbl4 (SELECT emp_no, first_name, last_name FROM employees.employees);
 SELECT * FROM testtbl4;
+DELETE FROM testtbl4;
 -- CMD에서 DELETE FROM으로 삭제 후 소요시간을 적어주세요. 1.67초
 INSERT INTO testtbl4 (SELECT emp_no, first_name, last_name FROM employees.employees);
+TRUNCATE TABLE testtbl4;
 -- CMD에서 TRUNCATE로 삭제 후 소요시간을 적어주세요. 0.05초
 
 -- 조건부로 데이터 입력하기
@@ -165,10 +163,10 @@ INSERT IGNORE INTO membertbl VALUES ('PDH', '박도현', '충청');
 
 -- IGNORE는 기존 데이터를 유지하고 신규데이터를 막는 구문이었는데
 -- 이미 존재하는 데이터가 있어도 신규데이터로 갱신해서 넣고 싶은 경우
-INSERT INTO membertbl VALUES ('LSH', '이성혁', '제주');
+INSERT INTO membertbl VALUES ('LSH', '이성혁', '제주'); -- 오류
 
 -- ON DUPLICATE KEY UPDATE 구문을 쓰면 됩니다.
-INSERT INTO membertbl VALUES ('LSH', '이성혁', '제주')
+INSERT INTO membertbl VALUES ('LSH', '이상혁', '서울')
 	ON DUPLICATE KEY UPDATE user_name = '이성혁', addr = '제주';
 SELECT * FROM membertbl;
 INSERT INTO membertbl VALUES ('HS', '허수', '울산')
@@ -177,9 +175,9 @@ INSERT INTO membertbl VALUES ('HS', '허수', '울산')
 -- ON DUPLICATE KEY UPDATE는 자료가 없으면 INSERT INTO에 적힌 대로 데이터를 넣고
 -- 자료가 겹치는 상황인 경우에 ON DUPLICATE KEY UPDATE를 실행하는 구문이기 때문에
 -- 만약 데이터가 겹치지 않아도 잘 작동합니다.
--- 기존 테이블 요소와 겹치지 않는것을 넣어서 잘 들어가는지 CMD를 이용해 실행한 후 확인해주세요.
--- INSERT INTO membertbl VALUES ('HMB', '홍명보', '울산')
--- ON DUPLICATE KEY UPDATE user_name = '홍명보', addr = '울산';
+
+INSERT INTO membertbl VALUES ('HMB', '홍명보', '울산')
+ON DUPLICATE KEY UPDATE user_name = '홍명보', addr = '울산';
 
 -- [사용자 관리하기]
 -- 현재 root 계정은 모든 권한(수정, 삭제, 조회, 변경, 계정생성 등)

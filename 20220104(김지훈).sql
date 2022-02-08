@@ -56,7 +56,7 @@ SELECT * FROM employees ORDER BY hire_date DESC limit 10;
 SELECT * FROM (SELECT * FROM employees limit 10) e ORDER BY hire_date DESC;
 
 -- 만약 limit 숫자1, 숫자2; 와 같이 숫자 2개를 넣는경우
--- 숫자 1번 다음부터 숫자 2에 기입한 갯수만큼 보여줍니다.
+-- 숫자 1번 인덱스 부터 숫자 2에 기입한 갯수만큼 보여줍니다.
 SELECT * FROM employees limit 5, 10;
 
 
@@ -82,6 +82,7 @@ SELECT user_id, sum(price * amount) as 'total' FROM buyTbl GROUP BY user_id;
 SELECT user_id, avg(price) as '평균가' FROM buyTbl GROUP BY user_id;
 
 -- 자주쓰는 집계함수 정리
+-- SUM() 합계
 -- AVG() 평균
 -- MIN() 최소값
 -- MAX() 최대값
