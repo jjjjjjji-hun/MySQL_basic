@@ -204,7 +204,6 @@ ON DUPLICATE KEY UPDATE user_name = '홍명보', addr = '울산';
 -- 위 두줄을 이용해서 생성할수도 있습니다.
 -- ict2 계정은 CMD환경에서 여러분들이 만들어주세요. 비밀번호는 ictICT03입니다.
 
-
 -- 계정 접속 방법
 -- CMD에서 접속시 mysql -u 계정명 -p로 연결가능
 -- 접속 후 show databases; 를 이용해 DB목록 확인 가능
@@ -212,10 +211,12 @@ ON DUPLICATE KEY UPDATE user_name = '홍명보', addr = '울산';
 -- SELECT user, host FROM user; 를 할 경우 생성된 계정목록 조회가능
 show databases; -- DB목록 조회
 
-
 -- CMD에서 전체가 아닌 일부 권한 주기
 -- icttest 계정을 만들어주세요. 권한은 따로 주지 마세요.
 -- ict_practice 데이터베이스의 testtbl3 테이블에 대한 SELECT, DELETE 권한만 부여
 -- GRANT 권한1, 권한2... ON DB명.테이블명 TO 계정명@'%';
--- GRANT SELECT, DELETE ON ict_practice.testtbl3 TO icttest@'%';
+-- testtbl3GRANT SELECT, DELETE ON ict_practice.testtbl3 TO icttest@'%';
 GRANT SELECT, DELETE ON ict_practice.testtbl3 TO icttest@'%';
+INSERT INTO testtbl3 VALUES (null, '강아지', '5');
+SELECT * FROM testtbl3;
+DELETE FROM testtbl3 WHERE id = '1517';
