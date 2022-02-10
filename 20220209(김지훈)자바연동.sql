@@ -18,4 +18,6 @@ INSERT INTO userinfo VALUES ('김자바', 'KJV', 'javaKim', 'Java@naver.com');
 INSERT INTO userinfo VALUES ('김파이썬', 'KPTH', 'pythonKim', 'Pison@naver.com');
 INSERT INTO userinfo VALUES ('박스프링', 'PSP', 'springPark', null);
 INSERT INTO userinfo VALUES ('장부트', 'JB', 'bootJang', null);
+
 SELECT * FROM userinfo;
+DELETE FROM userinfo WHERE uid = 'JB';

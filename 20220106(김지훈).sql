@@ -15,6 +15,7 @@
 
 SELECT * FROM buyTbl INNER JOIN userTbl ON buyTbl.user_id = userTbl.user_id;
 SELECT * FROM buyTbl;
+SELECT * FROM userTbl;
 -- 지금 현재 구매자 정보를 조회하려고 하는데, 필요한 정보는
 -- buyTbl의 구매 물품정보 전체에, 구매자 정보는 택배를 받기 위해서
 -- 이름, 주소, 휴대폰번호만 있으면 되는 상황입니다.
@@ -29,7 +30,7 @@ SELECT buyTbl.*,
     userTbl.user_name, userTbl.addr, userTbl.phone_number 
     FROM buyTbl INNER JOIN userTbl ON buyTbl.user_id = userTbl.user_id;
     
--- FROM구문에서 테이블명만 적는게 아니라, 테이블명 병명 형식으로 적을 경우는
+-- FROM구문에서 테이블명만 적는게 아니라, 테이블명 별명 형식으로 적을 경우는
 -- 테이블명을 풀로 적지 않고 별명으로 대체해서 호출할 수 있어 좀 더 편리합니다.
 SELECT * FROM buyTbl b INNER JOIN userTbl u
 		ON b.user_id = u.user_id;
@@ -76,10 +77,10 @@ SELECT * FROM buyTbl; -- 구매이력이 있는 회원은 5명
 -- 테이블의 컬럼은 전체 출력합니다.
 SELECT * FROM userTbl LEFT OUTER JOIN buyTbl ON userTbl.user_id = buyTbl.user_id;
 
--- RIGHT JOIN인데, userTbl를 RIGHT에, buyTbl을 LEFT에 두고 작성해주세요.
+-- RIGHT JOIN인데, userTbl를 LEFT에, buyTbl을 RIGHT에 두고 작성해주세요.
 -- INNER JOIN을 넣은 자리에 대신 RIGHT OUTER JOIN으로 고쳐주시기만 하면 작동합니다.
 -- 테이블의 컬럼은 전체 출력합니다.
-SELECT * FROM buyTbl RIGHT OUTER JOIN userTbl ON userTbl.user_id = buyTbl.user_id;
+SELECT * FROM userTbl RIGHT OUTER JOIN buyTbl ON userTbl.user_id = buyTbl.user_id;
 
 -- FULL OUTER JOIN은 누락데이터 없이 양쪽 테이블의 모든 자료를 보여줍니다.
 -- ORACLE SQL에는 FULL OUTER JOIN을 구문으로 지원하지만 MySQL에서는
@@ -111,7 +112,7 @@ INSERT INTO membership VALUES ('노영웅', 37000);
 INSERT INTO membership VALUES ('김철수', 500);
 SELECT * FROM membership;
 
--- 위 데이터셋(학생 student, 회원포인트 membership)에 대해 left조인을 해주세요.
+-- 위 데이터셋(학생 student, 회원포인트 membership)에 대해 FULL OUTER JOIN조인을 해주세요.
 SELECT * FROM student s LEFT OUTER JOIN membership m ON s.user_name = m.user_name
 UNION
 SELECT * FROM student s RIGHT OUTER JOIN membership m ON s.user_name = m.user_name;
