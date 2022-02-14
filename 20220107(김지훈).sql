@@ -68,7 +68,7 @@ EXECUTE myQuery USING @myVar5;
 -- CONVERT(실행문 , 바꿀자료형);
 SELECT avg(amount) FROM buyTbl;  -- 실수(double)로 나오는 평균 구매수
 
-SELECT CAST(avg(amount) as SIGNED INTEGER) FROM buyTbl; -- INT로 avg(amount)변경
+SELECT CAST(avg(amount) as SIGNED INTEGER) as '평균구매수' FROM buyTbl; -- INT로 avg(amount)변경
 
 SELECT CONVERT(avg(amount) , SIGNED INTEGER) as '평균구매수' FROM buyTbl; -- INT로 avg(amount)변경
 
@@ -137,7 +137,7 @@ END as '결과';
 -- 원래 값을 보려면 BLOB -> 우클릭 -> Open value in viewer -> text 탭 선택
 SELECT ASCII('B'), CHAR(97); 
 
--- 문자열의 길이를 그때그떄 확인하기 위해서는
+-- 문자열의 길이를 그때그때 확인하기 위해서는
 -- CHAR_LENGTH(문자열)을 사용합니다.
 -- 이때 결과로 나오는 숫자는 문자열의 길이입니다.
 SELECT CHAR_LENGTH('가나다라마바사');
@@ -155,7 +155,7 @@ SELECT FORMAT(1234.588475896295, 3);
 
 -- BIN(숫자), HEX(숫자), OCT(숫자)
 -- 2진수        16진수    8진수
--- 정수로 10진수 숫자를 바꿔서 표핸해줍니다.
+-- 정수로 10진수 숫자를 바꿔서 표현해줍니다.
 SELECT BIN(31), HEX(31), OCT(31);
 
 -- INSERT(기준문자열, 위치, 길이, 삽입할 문자열);
@@ -186,10 +186,10 @@ SELECT LTRIM('             이것이'), RTRIM('저것이                   ');
 SELECT LTRIM('     이것이     저것이   '), RTRIM('         이것이     저것이     ');
 SELECT '             이것이', '저것이                 ';
 
--- TRIM(문자열), TRIm(방향 '자를문자' FROM '대상문자')
+-- TRIM(문자열), TRIM(방향 '자를문자' FROM '대상문자')
 -- TRIM은 기본적으로는 LTRIM+RTRIM 형식으로 양쪽의 모든 공백을 다 삭제해줍니다.
 -- 공백이 아닌 특정 문자를 삭제하도록 구문을 지정할 수도 있습니다.
-SELECT TRIM('          야호       ');
+SELECT TRIM('       야호    야호      ');
 
 -- 방향은 BOTH(양쪽 다), LEADING(왼쪽), TRAILING(오른쪽)
 -- 중 하나를 고르면 됩니다.
@@ -200,6 +200,7 @@ SELECT TRIM(TRAILING '오른쪽' FROM '왼쪽 중간 오른쪽');
 -- REPEAT(문자열, 횟수)
 -- 문자열을 횟수만큼 반복합니다.
 SELECT REPEAT('R', 10);
+
 
 -- REPLACE(문자열, 원래문자열, 바꿀문자열)
 -- 문자열에서 원래문자열을 찾아 바꿀문자열로 교체합니다.
@@ -260,12 +261,12 @@ DROP PROCEDURE getUser;
 -- getUser()를 만들어주세요. userTbl을 조회해줍니다.
 -- 만들고 나서 호출까지 해주세요.
 DELIMITER $$
-CREATE PROCEDURE getUser1()
+CREATE PROCEDURE getUser()
 	BEGIN # 프로시저 내부에서 주석 쓰는 법
 		SELECT * FROM userTbl;
 	END $$ # 중괄호가 없으므로 닫는 부분을 END키워드로 대체
 DELIMITER ; # 문법상 띄어쓰기 필수
-CALL getUser1();
+CALL getUser();
 
 
 -- 프로시저를 활용해 employees 테이블의 100001번 직원의
